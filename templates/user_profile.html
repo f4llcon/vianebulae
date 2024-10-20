@@ -1,0 +1,64 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div id="profile-page">
+
+    <h1>User Profile</h1>
+
+    <!-- Display validation messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Display user information -->
+    <img src="{{ url_for('static', filename='images/avatars/' + current_user.avatar) }}" alt="User Avatar" width="100"><br>
+    <h2>{{ current_user.username }}</h2><br>
+    <p>Bio: {{ current_user.bio }}</p>
+
+    <!-- Form for updating user information -->
+    <div class="profile-form">
+        <form method="POST" action="{{ url_for('user_profile') }}" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+
+            <label for="avatar">Avatar:</label>
+            {{ form.avatar() }}
+
+            <label for="bio">Bio:</label>
+            {{ form.bio(rows=5, cols=40) }}
+
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+
+    <!-- Display user reviews -->
+    <h2>My Reviews</h2>
+    {% if reviews %}
+        <ul>
+            {% for review in reviews %}
+            <div class="review-card">
+                <ul>
+                    <p>{{ review.content }}</p>
+                    {% if review.book_id %}
+                        <p>Review of Book: <a href="{{ url_for('book', book_id=review.book_id) }}">{{ review.book.title }}</a></p>
+                    {% elif review.movie_id %}
+                        <p>Review of Movie: <a href="{{ url_for('movie', movie_id=review.movie_id) }}">{{ review.movie.title }}</a></p>
+                    {% elif review.game_id %}
+                        <p>Review of Game: <a href="{{ url_for('game', game_id=review.game_id) }}">{{ review.game.title }}</a></p>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endfor %}
+        </ul>
+
+    {% else %}
+        <p>No reviews yet.</p>
+    {% endif %}
+
+</div>
+{% endblock %}

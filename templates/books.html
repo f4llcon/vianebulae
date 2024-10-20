@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <!-- Display validation messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Discover Speculative Books</h2>
+            <p>Explore a galaxy of captivating books, and share your own views.</p>
+        </div>
+    </section>
+
+    <section id="books">
+        <h3>All Books</h3>
+        <div class="item-container">
+            {% for book in all_books %}
+                <a href="{{ url_for('book', book_id=book.id) }}" class="item-link">
+                    <div class="card book-card">
+                        <img src="{{ url_for('static', filename='images/covers/' + book.cover_image) }}" alt="Book Cover">
+                        <h4>{{ book.title }}</h4>
+                        <p>by {{ book.author }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

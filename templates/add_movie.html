@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="add-book-form">
+    <h1>Add a New Movie</h1>
+
+    <!-- Display validation messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- IMDB Form -->
+    <form method="POST" action="{{ url_for('add_movie') }}" enctype="multipart/form-data">
+        {{ imdb_form.hidden_tag() }}
+
+        <label for="imdb">IMDB ID:</label>
+        {{ imdb_form.imdb(size=40) }}
+
+        <button type="submit">Fetch Movie Details</button>
+    </form>
+
+    <!-- Movie Form -->
+    <form method="POST" action="{{ url_for('add_movie') }}" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <label for="title">Title:</label>
+        {{ form.title(size=40) }}
+
+        <label for="director">Director:</label>
+        {{ form.director(size=40) }}
+
+        <label for="genre">Genre:</label>
+        {{ form.genre(size=40) }}
+
+        <label for="synopsis">Synopsis:</label>
+        {{ form.synopsis(rows=10, cols=40) }}
+
+        <label for="cover_image">Cover Image:</label>
+        {{ form.cover_image }}
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

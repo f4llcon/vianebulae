@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="add-book-form">
+
+    <h1>Add a New Book</h1>
+
+    <!-- Display validation messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <!-- ISBN Form -->
+    <form method="POST" action="{{ url_for('add_book') }}" enctype="multipart/form-data">
+        {{ isbn_form.hidden_tag() }}
+
+        <label for="isbn">ISBN:</label>
+        {{ isbn_form.isbn(size=40) }}
+
+        <button type="submit">Fetch Book Details</button>
+    </form>
+
+    <!-- Book Form -->
+    <form method="POST" action="{{ url_for('add_book') }}" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <label for="title">Title:</label>
+        {{ form.title(size=40) }}
+
+        <label for="author">Author:</label>
+        {{ form.author(size=40) }}
+
+        <label for="genre">Genre:</label>
+        {{ form.genre(size=40) }}
+
+        <label for="synopsis">Synopsis:</label>
+        {{ form.synopsis(rows=10, cols=40) }}
+
+        <label for="cover_image">Cover Image:</label>
+        {{ form.cover_image }}
+
+
+        {% if cover_url %}
+            <img src="{{ cover_url }}" alt="Book Cover" width="100">
+        {% endif %}
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <h1>Add Content</h1>
+    <div class="button-container">
+        <a href="{{ url_for('add_book') }}" class="add-button">Add Book</a>
+        <a href="{{ url_for('add_movie') }}" class="add-button">Add Movie</a>
+        <a href="{{ url_for('add_game') }}" class="add-button">Add Game</a>
+    </div>
+{% endblock %}

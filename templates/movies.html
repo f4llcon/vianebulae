@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <!-- Display validation messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Discover Speculative Movies</h2>
+            <p>Explore a galaxy of captivating movies, and share your own views.</p>
+        </div>
+    </section>
+
+    <section id="movies">
+        <h3>All Movies</h3>
+        <div class="item-container">
+            {% for movie in all_movies %}
+                <a href="{{ url_for('movie', movie_id=movie.id) }}" class="item-link">
+                    <div class="card movie-card">
+                        <img src="{{ url_for('static', filename='images/covers/' + movie.cover_image) }}" alt="Movie Cover">
+                        <h4>{{ movie.title }}</h4>
+                        <p>By {{ movie.director }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    <!-- Display validation messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <section id="hero">
+        <div class="hero-content">
+            <h2>Discover Speculative Fiction</h2>
+            <p>Explore captivating stories and escape into them, and write your thoughts.</p>
+            {% if not current_user.is_authenticated %}
+                <a href="{{ url_for('register') }}" class="btn">Register now!</a>
+            {% endif %}
+        </div>
+    </section>
+
+    <section id="featured-books">
+        <h3>Featured Books</h3>
+        <div class="item-container">
+            {% for featured_book in random_books %}
+                <a href="{{ url_for('book', book_id=featured_book.id) }}" class="item-link">
+                    <div class="card book-card">
+                        <img src="{{ url_for('static', filename='images/covers/' + featured_book.cover_image) }}" alt="Book Cover">
+                        <h4>{{ featured_book.title }}</h4>
+                        <p>by {{ featured_book.author }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="featured-movies">
+        <h3>Featured Movies</h3>
+        <div class="item-container">
+            {% for featured_movie in random_movies %}
+                <a href="{{ url_for('movie', movie_id=featured_movie.id) }}" class="item-link">
+                    <div class="card movie-card">
+                        <img src="{{ url_for('static', filename='images/covers/' + featured_movie.cover_image) }}" alt="Movie Cover">
+                        <h4>{{ featured_movie.title }}</h4>
+                        <p>by {{ featured_movie.director }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="featured-games">
+        <h3>Featured Games</h3>
+        <div class="item-container">
+            {% for featured_game in random_games %}
+                <a href="{{ url_for('game', game_id=featured_game.id) }}" class="item-link">
+                    <div class="card game-card">
+                        <img src="{{ url_for('static', filename='images/covers/' + featured_game.cover_image) }}" alt="Movie Cover">
+                        <h4>{{ featured_game.title }}</h4>
+                        <p>by {{ featured_game.studio }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div id="book-page">
+
+    <!-- Display validation messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <h1>{{ book.title }}</h1>
+    <h2>By {{ book.author }}</h2>
+    <h3>Genre: {{ book.genre }}</h3>
+    <h3>{{ book.synopsis }}</h3>
+
+    <!-- Display book cover -->
+    <img src="{{ url_for('static', filename='images/covers/' + book.cover_image) }}" alt="Book Cover">
+
+    {% if current_user.is_authenticated and current_user.id == 1 %}
+        <form method="POST" class="imp-button" action="{{ url_for('delete_entry', item_type='book', item_id=book.id) }}">
+            <button type="submit">Delete</button>
+        </form>
+    {% endif %}
+
+    <section id="reviews">
+        <h2>Reviews</h2>
+        
+        <!-- Display existing reviews -->
+        {% if reviews %}
+
+            {% for review in reviews %}
+                <div class="review-card">
+                    <img src="{{ url_for('static', filename='images/avatars/' + review.user.avatar) }}" alt="User Avatar" width="100">
+                    <div class="review-details">
+                        <h4><a href="{{ url_for('profile', user_id=review.user.id) }}">{{ review.user.username }}</a></h4>
+                        <p>{{ review.content }}</p>
+
+                        {% if current_user.is_authenticated and review.user_id == current_user.id or current_user.id == 1 %}
+                            <form method="POST" action="{{ url_for('delete_review', item_type='book', item_id=book.id, review_id=review.id) }}">
+                                <button type="submit">Delete Review</button>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% else %}
+            <h3>No reviews yet.</h3><br>
+        {% endif %}
+
+        <!-- Display the review form -->
+        {% if current_user.is_authenticated %}
+            <h3>Add Your Review</h3>
+            <div class="your-review">
+                <form method="POST" action="{{ url_for('add_review', item_type='book', item_id=book.id) }}">
+                    {{ form.hidden_tag() }}
+                    {{ form.review_content.label() }}<br><br>
+                    {{ form.review_content(rows=10, cols=100) }}<br>
+                    <button type="submit" class="btn">Submit Review</button>
+                </form>
+            </div>
+        {% else %}
+            <p>Login to add a review.</p>
+        {% endif %}
+    </section>
+
+</div>
+{% endblock %}

@@ -1,0 +1,544 @@
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: black;
+    color: yellow;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(38, 38, 38, 0.651);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 0px 30px 30px; /* Apply border-radius only to the bottom corners */
+    transition: all 1s; /* Add a smooth transition for the text enlargement on hover */
+}
+
+header:hover {
+    transform: scale(1.05); /* Enlarge the text on hover */
+}
+
+
+h1 {
+    font-size: 2em;
+    text-align: center;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+nav ul {
+    list-style: none;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: yellow;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 1s;
+}
+
+nav a:hover {
+    background-color: yellow;
+    color: black;
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    text-align: right;
+    padding: 10px;
+    background-color: rgba(50, 50, 50, 0.651);
+    color: yellow;
+    position: fixed;
+    opacity: 0.3;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 350px;
+}
+
+/* Add a general class for cards */
+.card {
+    background-color: rgba(38, 38, 38, 0.651);
+    color: yellow;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Style the flashes */
+.flashes {
+    list-style: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #ffcc00; 
+    color: black; 
+    border-radius: 10px;
+}
+
+/* Style the hero section */
+#hero {
+    background-size: cover;
+    background-position: center;
+    color: yellow;
+    text-align: center;
+    padding: 10px;
+}
+
+#hero h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+#hero p {
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+#hero .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+}
+
+#hero .btn:hover {
+    background-color: #e0b800; /* Darker yellow on hover */
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.item-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+/* Style the cards inside item containers */
+.item-link {
+    text-decoration: none;
+}
+
+.book-card,
+.movie-card,
+.game-card {
+    width: 100%; 
+    max-width: 200px; /* Set a max-width to prevent cards from becoming too wide */
+    transition: all 1s;
+}
+
+.book-card img,
+.movie-card img,
+.game-card img {
+    max-width: 100%; /* Ensure images don't overflow the card */
+    border-radius: 8px; /* Add rounded corners to images */
+    margin-top: 10px;
+}
+
+.book-card h4,
+.movie-card h4,
+.game-card h4 {
+    font-size: 1.2em;
+    margin-top: 15px;
+}
+
+.book-card p,
+.movie-card p,
+.game-card p {
+    font-size: 1em;
+    color: #676767; /* Light gray color for the description */
+}
+
+.item-link :hover {
+    background-color: rgb(152, 152, 9);
+    color: black;
+    scale: 1.1;
+}
+
+/* Media query to make cards responsive */
+@media (max-width: 200px) {
+    .book-card,
+    .movie-card,
+    .game-card {
+        width: 100%;
+        max-width: 200px;
+    }
+}
+
+#featured-books,
+#featured-movies,
+#featured-games {
+    background-size: cover;
+    background-position: center;
+    color: yellow;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Style the individual book, movie and game pages */
+#book-page {
+    background-color: black;
+    color: yellow;
+    padding: 20px;
+}
+
+#book-page h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#book-page h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#book-page h3 {
+    font-size: 1em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#book-page .imp-button {
+    display: flex;
+    justify-content: center;
+}
+
+#book-page img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#book-page .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffcc00;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin-top: 20px;
+    text-align:center;
+}
+
+#book-page a {
+    color: #ffcc00;
+}
+
+#book-page #reviews {
+    margin-top: 40px;
+}
+
+#book-page .review-card {
+    border: 1px solid #ffcc00;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    transition: all 1s;
+}
+
+#book-page .review-card:hover {
+    border: 1px solid #ffcc00;
+    background-color: #ffcc00;
+    color: black;
+}
+
+#book-page .review-card:hover a {
+    color: black; 
+}
+
+#book-page .review-card img {
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+#book-page .review-details {
+    flex: 1;
+}
+
+#book-page .review-details h4 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+#book-page .review-details p {
+    font-size: 1em;
+}
+
+#book-page .review-details form button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+#book-page .review-details form button:hover {
+    background-color: #e0b800;
+}
+
+#book-page form h4 {
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+#book-page form button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+#book-page form button:hover {
+    background-color: #e0b800;
+}
+
+
+#book-page .your-review {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Style the input fields */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+textarea {
+    background-color: black;
+    color: yellow;
+    border: 1px solid #ffcc00;
+    border-radius: 5px;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8); /* Add a glowing effect */
+}
+
+input[type="submit"],
+button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #e0b800;
+}
+
+/* Style the Add Content page */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.add-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: #ffcc00;
+    color: black;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-button:hover {
+    background-color: #e0b800;
+}
+
+/* Style the Profile page */
+#profile-page {
+    text-align: center;
+    padding: 20px;
+}
+
+#profile-page h1 {
+    margin-bottom: 10px;
+}
+
+#profile-page img {
+    border-radius: 50%;
+    margin: 30px 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    scale: 1.5;
+}
+
+#profile-page h2 {
+    margin-top: 20px;
+}
+
+#profile-page p {
+    margin-bottom: 5px;
+}
+
+#profile-page ul {
+    list-style: none;
+    padding: 0;
+}
+
+#profile-page a {
+    color: #ffcc00;
+}
+
+#profile-page .review-card {
+    border: 1px solid #ffcc00;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    align-items: center;
+    transition: all 1s;
+}
+
+#profile-page .review-card:hover {
+    border: 1px solid #ffcc00;
+    background-color: #ffcc00;
+    color: black;
+}
+
+#profile-page .review-card:hover a {
+    color: black;
+}
+
+/* Style form elements */
+.profile-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-form label {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.profile-form button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.profile-form button:hover {
+    background-color: #e0b800;
+}
+
+/* Center the add book form */
+.add-book-form {
+    text-align: center;
+    max-width: 600px; 
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.add-book-form form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-book-form label {
+    font-size: 1.2em;
+    margin-top: 10px;
+}
+
+.add-book-form button {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+.add-book-form button:hover {
+    background-color: #e0b800;
+}
+
+/* Center the registration form */
+.registration-container {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto; 
+    padding: 20px;
+}
+
+.registration-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.registration-container form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.registration-container .form-group {
+    margin-bottom: 20px;
+}
+
+.registration-container .form-label {
+    font-size: 1.2em;
+}
+
+.registration-container .form-control {
+    width: 100%;
+    padding: 8px;
+    font-size: 1em;
+}
+
